@@ -1,0 +1,44 @@
+pipeline:
+  name: test-deploy
+  identifier: testdeploy
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github
+        repoName: ci-cd
+        build: <+input>
+  stages:
+    - stage:
+        name: Build Stage
+        identifier: Build_Stage
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: MacOS
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec:
+              harnessImageConnectorRef: Test
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Build Go lang
+                  identifier: Build_Go_lang
+                  spec:
+                    shell: Sh
+                    command: |-
+                      go mod init ci-cd
+                      go build
+                      go test
