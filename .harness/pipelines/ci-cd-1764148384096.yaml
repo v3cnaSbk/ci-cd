@@ -19,7 +19,8 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      echo "Welcome to Harness CI"
+                      ls -R
+                      pwd
                       go mod init
                       go build
                       go test
