@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_v3cnaSbk_ci_cd_1764148395175-pr-trigger-input-set
+  identifier: Build_v3cnaSbk_ci_cd_1764148395175prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_v3cnaSbk_ci_cd_1764148395175
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
