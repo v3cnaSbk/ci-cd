@@ -19,9 +19,7 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      ls -R
-                      pwd
-                      go mod init
+                      go mod init ci-cd
                       go build
                       go test
           platform:
