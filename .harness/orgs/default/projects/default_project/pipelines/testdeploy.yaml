@@ -21,8 +21,9 @@ pipeline:
           caching:
             enabled: true
             override: true
+            paths: []
           buildIntelligence:
-            enabled: true
+            enabled: false
           platform:
             os: MacOS
             arch: Arm64
