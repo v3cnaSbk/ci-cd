@@ -1,0 +1,44 @@
+pipeline:
+  name: Test
+  identifier: Test
+  projectIdentifier: Automate
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github
+        repoName: ci-cd
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec:
+              harnessImageConnectorRef: Testdock
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Build Go Lang
+                  identifier: Build_Go_Lang
+                  spec:
+                    shell: Sh
+                    command: |-
+                      go mod init ci-cd
+                      go build
+                      go test
